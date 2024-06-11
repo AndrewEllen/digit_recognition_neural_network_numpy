@@ -32,11 +32,11 @@ def init_params():
   # Generates random values between 0 and 1
   W1 = np.random.randn(10, 784)
   # In tutorial he subtracts 0.5 from the below line. He also does the above line then says that breaks it.
-  b1 = np.random.randn(10, 1)
+  b1 = np.random.randn(10, 1) - 0.5
 
-  W2 = np.random.randn(10, 10)
+  W2 = np.random.randn(10, 10) - 0.5
 
-  b2 = np.random.randn(10, 1)
+  b2 = np.random.randn(10, 1) - 0.5
   
   return W1, b1, W2, b2
 
@@ -48,7 +48,7 @@ def ReLU(Z):
 
 # Function to handle softmax
 def softmax(Z):
-  return (np.exp(Z) / np.sum(np.exp(Z)))
+  return np.exp(Z) / sum(np.exp(Z))
 
 
 # Function to handle forward propogation
