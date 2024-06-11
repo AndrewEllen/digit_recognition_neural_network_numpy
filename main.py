@@ -1,5 +1,7 @@
+import json
 import numpy as np
 import pandas as pd
+import os.path
 from matplotlib import pyplot as plt
 from IPython.display import display
 
@@ -26,6 +28,7 @@ X_train = data_train[1:n]
 X_train = X_train / 255
 _,m_train = X_train.shape
 
+
 # Initialising the parameters
 def init_params():
   # Generating a random array with dimensions 10x784
@@ -39,7 +42,6 @@ def init_params():
   b2 = np.random.randn(10, 1)
   
   return W1, b1, W2, b2
-
 
 # Function to handle rectified linear unit
 def ReLU(Z):
@@ -118,26 +120,64 @@ def gradient_descent(X, Y, iterations, alpha):
             predictions = get_predictions(A2)
             print(get_accuracy(predictions, Y))
     return W1, b1, W2, b2
-  
+
 
 # Function to make predictions
 def make_predictions(X, W1, b1, W2, b2):
-   _, _, _, A2 = forward_prop(W1, b1, W2, b2, X)
-   predictions = get_predictions(A2)
-   return predictions
-   
+  _, _, _, A2 = forward_prop(W1, b1, W2, b2, X)
+  predictions = get_predictions(A2)
+  return predictions
+  
+
 # Function to test predictions
 def test_prediction(index, W1, b1, W2, b2):
-   current_image = X_train[:, index, None]
-   prediction = make_predictions(X_train[:, index, None], W1, b1, W2, b2)
-   label = Y_train[index]
-   print("Prediction: ", prediction)
-   print("Label ", label)
+  current_image = X_train[:, index, None]
+  prediction = make_predictions(X_train[:, index, None], W1, b1, W2, b2)
+  label = Y_train[index]
+  print("Prediction: ", prediction)
+  print("Label ", label)
 
-   current_image = current_image.reshape((28,28)) * 255
-   plt.gray()
-   plt.imshow(current_image, interpolation="nearest")
-   plt.show()   
-   
-W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 1500, 0.1)
-test_prediction(5, W1, b1, W2, b2)
+  current_image = current_image.reshape((28,28)) * 255
+  plt.gray()
+  plt.imshow(current_image, interpolation="nearest")
+  plt.show()
+
+
+# Function to train the model
+def train_model():
+
+  W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 100, 0.1)
+
+  model = {
+    "W1": W1,
+    "b1": b1,
+    "W2": W2,
+    "b2": b2,
+  }
+
+  with open('model.json', 'w') as f:
+    json.dump({
+    "W1": W1.tolist(),
+    "b1": b1.tolist(),
+    "W2": W2.tolist(),
+    "b2": b2.tolist(),
+  }, f)
+
+  return model
+
+
+# Checking if model file exists
+if os.path.isfile('model.json'):
+  with open('model.json') as f:
+    model = json.load(f)
+    model = {
+    "W1": np.array(model["W1"]),
+    "b1": np.array(model["b1"]),
+    "W2": np.array(model["W2"]),
+    "b2": np.array(model["b2"]),
+  }
+
+  test_prediction(5, model["W1"], model["b1"], model["W2"], model["b2"])
+else:
+  model = train_model()
+  test_prediction(5, model["W1"], model["b1"], model["W2"], model["b2"])
