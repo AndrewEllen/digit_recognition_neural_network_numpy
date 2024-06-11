@@ -139,5 +139,5 @@ def test_prediction(index, W1, b1, W2, b2):
    plt.imshow(current_image, interpolation="nearest")
    plt.show()   
    
-W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 500, 0.1)
+W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 1500, 0.1)
 test_prediction(5, W1, b1, W2, b2)
