@@ -146,7 +146,7 @@ def test_prediction(index, W1, b1, W2, b2):
 # Function to train the model
 def train_model():
 
-  W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 100, 0.1)
+  W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 3500, 0.1)
 
   model = {
     "W1": W1,
@@ -177,7 +177,9 @@ if os.path.isfile('model.json'):
     "b2": np.array(model["b2"]),
   }
 
-  test_prediction(5, model["W1"], model["b1"], model["W2"], model["b2"])
+  for i in range(5):
+    test_prediction(i, model["W1"], model["b1"], model["W2"], model["b2"])
 else:
   model = train_model()
-  test_prediction(5, model["W1"], model["b1"], model["W2"], model["b2"])
+  for i in range(5):
+    test_prediction(i, model["W1"], model["b1"], model["W2"], model["b2"])
