@@ -48,7 +48,6 @@ The digit_recognition_neural_network_numpy project is a software system that uti
 | 🔌 | **Integrations**    | External dependencies include NumPy for numerical operations. The project primarily relies on standard Python libraries for neural network operations and does not heavily integrate with external services or APIs. |
 | 🧩 | **Modularity**      | The codebase is modular, with distinct components for training, prediction, and model storage. This modular design enhances reusability, allowing developers to use specific functionalities independently in other projects. |
 | ⚡️  | **Performance**     | The project achieves efficient digit recognition by leveraging NumPy for optimized numerical computations. It demonstrates good speed and resource usage, making it suitable for real-time applications. Fine-tuning parameters through gradient descent enhances performance metrics. |
-| 🛡️ | **Security**        | Data protection measures are not explicitly detailed. Implementing secure data handling practices, such as input validation and encryption for sensitive information, could enhance security measures within the application. Access control mechanisms can also be considered for user data. |
 | 📦 | **Dependencies**    | Key dependencies include NumPy, Python, and JSON for handling data serialization. These libraries facilitate numerical computations, general programming functionalities, and data storage within the project. |
 | 🚀 | **Scalability**     | The project's architecture and design support scalability to some extent. By optimizing neural network parameters and leveraging NumPy operations, it can potentially handle increased traffic and load. However, further scalability enhancements may be required for large-scale deployments. |
 
@@ -85,13 +84,13 @@ The digit_recognition_neural_network_numpy project is a software system that uti
 
 **System Requirements:**
 
-* **Python**: `3.9.2`
-* **Numpy**: `Version compatible with Python 3.9.2`
-* **Pandas**: `Version compatible with Python 3.9.2`
-* **matplotlib**: `Version compatible with Python 3.9.2`
-* **IPython**: `Version compatible with Python 3.9.2`
-* **OS**: `Version compatible with Python 3.9.2`
-* **JSON**: `Version compatible with Python 3.9.2`
+* **Python**: `3.11`
+* **Numpy**: `Version compatible with Python 3.11`
+* **Pandas**: `Version compatible with Python 3.11`
+* **matplotlib**: `Version compatible with Python 3.11`
+* **IPython**: `Version compatible with Python 3.11`
+* **OS**: `Version compatible with Python 3.11`
+* **JSON**: `Version compatible with Python 3.11`
 
 ### ⚙️ Installation
 
